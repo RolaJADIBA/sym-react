@@ -1,0 +1,45 @@
+{# DELETE STUDENT #}
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete student</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="name"></p>
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn text-danger supprime">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function(){
+    $('.delete').click(function(){
+        const id = $(this).attr('data-id');
+        const first = $(this).attr('data-first');
+        const last = $(this).attr('data-last');
+        $('#name').html("Are you sure you want to delete this student " + first + last);
+        $('.supprime').click(function(){
+            $.ajax({
+                url: '/admin/student/delete/' + id,
+                type: 'GET',
+                data: { 'id' : id },
+                success:function(data) {
+                console.log(data);
+                }
+            })
+        })
+    })
+})
+</script>
+
+{% endblock %}

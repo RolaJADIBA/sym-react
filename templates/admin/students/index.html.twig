@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StudentsController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+    <h1>Students index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>first name</th>
+                <th>last name</th>
+                <th>telephone</th>
+                <th>date birthday</th>
+                <th>photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.firstName }}</td>
+                <td>{{ student.lastName }}</td>
+                <td>{{ student.telephone }}</td>
+                <td>{{ student.dateBirth|date }}</td>
+                <td>
+                    <img src="{{ asset('students/' ~ student.photo) }}" height = "75" alt="{{ student.id }}">
+                </td>
+                <td>
+                    <a href="{{ path('app_student_show', {'id': student.id}) }}">show</a>
+                    <a href="#edit{{student.id}}" data-bs-toggle="modal">edit</a>
+                    {# <a class="btn btn-danger btn-sm delete" data-bs-toggle="modal" data-bs-target="#delete" data-id={{ student.id }} data-first={{ student.firstName}} data-last={{student.lastName}}> #}
+                        delete
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <div class="col-md-2">
+            <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#add">Create new</a>
+        </div>
+    </div>
+</div>
+
+{% include "admin/modal/add.html.twig" %}
+{% include "admin/modal/delete.html.twig" %}
+{% include "admin/modal/edit.html.twig" %}
+
+{% endblock %}

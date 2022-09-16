@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groupe{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <h1>Student</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ student.id }}</td>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <td>{{ student.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>{{ student.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Telephone</th>
+                    <td>{{ student.telephone }}</td>
+                </tr>
+                <tr>
+                    <th>Date Birthday</th>
+                    <td>{{ student.dateBirth|date }}</td>
+                </tr>
+                <tr>
+                    <th>Photo</th>
+                    <td><img src="{{ asset('students/ ~ student.photo') }}" height="200" alt="{{student.id}}"></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_students_index') }}">back to list</a>
+
+        <a href="{{ path('app_student_edit', {'id': student.id}) }}">edit</a>
+
+        {{ include('admin/students/_delete_form.html.twig') }}
+    </div>
+</div>
+
+{% endblock %}

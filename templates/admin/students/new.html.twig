@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Groupe{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <h1>Create new Student</h1>
+
+        {{ include('admin/students/_form.html.twig') }}
+
+        <a href="{{ path('app_students_index') }}">back to list</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Level{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <h1>Create new Level</h1>
+
+        {{ include('admin/level/_form.html.twig') }}
+
+        <a href="{{ path('app_level_index') }}">back to list</a>
+    </div>
+</div>
+{% endblock %}
